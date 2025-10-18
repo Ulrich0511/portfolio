@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio — Ulrich Arekiom</title>
+  <meta name="description" content="Portfolio — Ulrich Arekiom : CV, projets d'étude et projets personnels." />
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#fbfaf8">
+  <link rel="canonical" href="https://exemple.com/portfolio-ulrich" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+  :root{
+    --bg:#fbfaf8; --paper:#ffffff; --ink:#1f2937; --muted:#6b5e55;
+    --accent:#a66a3f; --accent-2:#e3c7a8; --border:#eee8e1;
+    --radius:20px; --shadow-1:0 6px 18px rgba(0,0,0,.06); --shadow-2:0 24px 60px rgba(0,0,0,.10);
+    --inner:inset 0 1px 0 rgba(255,255,255,.85), inset 0 -1px 0 rgba(31,41,55,.04);
+    --maxw:1100px;
+
+    /* slider */
+    --rail-h:56px; --rail-br:999px; --count:4; --i:0;
+  }
+
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font:400 16px/1.65 "Inter",ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;
+    letter-spacing:.1px
+  }
+  h1,h2,h3{font-family:"Fraunces", serif; line-height:1.1}
+  h1{font-weight:700} h2,h3{font-weight:600}
+  a{color:var(--accent);text-decoration:none}
+  :focus-visible{outline:2px solid color-mix(in srgb, var(--accent) 55%, transparent);outline-offset:3px;border-radius:10px}
+  .container{max-width:var(--maxw);margin-inline:auto;padding:20px}
+
+  /* ===== header ===== */
+  header{position:sticky;top:0;z-index:40;background:color-mix(in srgb, var(--paper) 92%, transparent);backdrop-filter:saturate(112%) blur(10px);border-bottom:1px solid var(--border)}
+  .hero-bar{display:grid;grid-template-columns:72px 1fr auto;gap:16px;align-items:center}
+  .avatar{width:72px;height:72px;border-radius:20px;background:linear-gradient(180deg,#fff,#fbfaf8);display:grid;place-items:center;border:1px solid var(--border);box-shadow:var(--shadow-1)}
+  .avatar span{font-weight:800;font-size:24px;color:var(--accent)}
+  .title h1{margin:0;font-size:28px}
+  .title p{margin:.3rem 0 0;color:var(--muted)}
+  .actions{display:flex;gap:10px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:1px solid var(--border);background:linear-gradient(180deg,#fff,#fbfaf8);box-shadow:var(--shadow-1);color:var(--ink);cursor:pointer;transition:transform .25s}
+  .btn:hover{transform:translateY(-1px)}
+  .btn.primary{background:linear-gradient(180deg, color-mix(in srgb,var(--accent) 92%, #fff 8%), var(--accent));color:#fff;border-color:transparent}
+
+  /* ===== welcome + tiles ===== */
+  .welcome-inner{min-height:58vh;display:grid;place-items:center;padding:64px 20px}
+  .welcome-card{background:linear-gradient(180deg, rgba(255,255,255,.88), rgba(255,255,255,.75));border:1px solid var(--border);border-radius:28px;padding:clamp(24px,5vw,44px);box-shadow:var(--inner),var(--shadow-1);text-align:center}
+  .welcome h2{margin:0 0 10px;font-size:clamp(30px,5vw,48px)}
+  .welcome p{margin:0 auto 20px;max-width:720px;color:var(--muted)}
+  .scroll-cue{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;background:linear-gradient(180deg, rgba(166,106,63,.10), rgba(166,106,63,.05));border:1px solid var(--border)}
+
+  .stage{perspective:1200px;padding:30px 0 10px}
+  .tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+  @media (max-width:900px){.tiles{grid-template-columns:1fr}}
+  .tile{background:var(--paper);border:1px solid var(--border);border-radius:24px;padding:18px;box-shadow:var(--inner),var(--shadow-1);transform:translateY(50px) rotateX(6deg) scale(.99);opacity:0;transition:transform .8s cubic-bezier(.2,.8,.2,1),opacity .8s}
+  .tile.is-in{opacity:1;transform:translateY(0) rotateX(0) scale(1)}
+  .tile:hover{transform:translateY(-4px)}
+  .cover{height:170px;border-radius:16px;overflow:hidden;background:linear-gradient(135deg, rgba(166,106,63,.10), rgba(227,199,168,.10));border:1px solid var(--border);position:relative}
+  .cover::after{content:"";position:absolute;inset:-20%;background:
+    radial-gradient(220px 160px at 22% 24%, rgba(166,106,63,.20), transparent 60%),
+    radial-gradient(260px 180px at 70% 32%, rgba(227,199,168,.18), transparent 60%),
+    radial-gradient(180px 140px at 50% 78%, rgba(210,160,120,.12), transparent 60%);filter:blur(18px) saturate(112%);animation:liquid 14s ease-in-out infinite alternate}
+  @keyframes liquid{0%{transform:translate(0,0)}100%{transform:translate(6%,8%)}}
+  .tile h3{margin:12px 0 6px}
+  .tile p{margin:0;color:var(--muted)}
+  .tile .enter{margin-top:12px;display:inline-block;padding:10px 14px;border-radius:12px;border:1px solid var(--border);background:#fff}
+
+  /* ===== Slide deck ===== */
+  .app[hidden]{display:none}
+  .deck-wrap{margin-top:26px}
+  .deck-rail{height:var(--rail-h);border:1px solid var(--border);border-radius:var(--rail-br);background:linear-gradient(180deg,#fff,#fbfaf8);box-shadow:var(--shadow-1);display:flex;justify-content:center;align-items:center;padding:6px}
+  .rail-track{position:relative;width:100%;max-width:820px;margin-inline:auto}
+  .rail-labels{display:grid;grid-template-columns:repeat(var(--count),1fr);gap:8px}
+  .rail-labels button{appearance:none;border:0;background:transparent;padding:10px 6px;border-radius:12px;font-weight:600;color:var(--muted);cursor:pointer}
+  .rail-labels button[aria-current="true"]{color:var(--ink)}
+  .rail-indicator{position:absolute;top:6px;height:calc(100% - 12px);width:calc(100%/var(--count));left:0;transform:translateX(calc(100% * var(--i)));border-radius:12px;background:color-mix(in srgb, var(--accent) 16%, #fff 84%);box-shadow:inset 0 0 0 1px var(--border);transition:transform .35s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+
+  .deck{margin-top:16px;border-radius:24px;border:1px solid var(--border);background:var(--paper);box-shadow:var(--inner),var(--shadow-1);overflow:hidden}
+  .slides{
+    display:flex;padding:0;margin:0;will-change:transform;transition:transform .5s cubic-bezier(.2,.8,.2,1);
+    touch-action: pan-y; /* important pour laisser les clics */
+  }
+  .slide{min-width:100%;box-sizing:border-box;padding:24px}
+  .slide > *{max-width:var(--maxw);margin-inline:auto}
+
+  .grid{display:grid;gap:16px}
+  .card{background:var(--paper);border:1px solid var(--border);border-radius:18px;padding:16px;box-shadow:var(--inner),var(--shadow-1)}
+  .card h3{margin:0 0 8px}
+  .meta{color:var(--muted);font-size:14px}
+  .badge{display:inline-block;padding:2px 8px;border-radius:999px;border:1px solid var(--border);background:#fff;font-size:12px;color:var(--muted)}
+  .media{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow-1)}
+  iframe{display:block;width:100%;height:min(70vh,900px);border:0;background:#fff}
+
+  /* ===== Contact stylé ===== */
+  .contact-card{position:relative;background:linear-gradient(180deg, rgba(166,106,63,.06), transparent 38%), var(--paper);
+    border:1px solid var(--border);border-radius:22px;padding:22px;box-shadow:var(--inner),var(--shadow-1)}
+  .contact-lead{margin:6px 0 18px;color:var(--muted)}
+  .contact-actions{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:999px;border:1px solid var(--border);
+    background:#fff;box-shadow:var(--shadow-1);transition:transform .2s, box-shadow .2s, filter .2s}
+  .chip:hover{transform:translateY(-1px);filter:saturate(1.03)}
+  .chip svg{width:18px;height:18px;flex:0 0 18px}
+  .chip.linkedin{background:linear-gradient(180deg,#fff,#fbfaf8);border-color:color-mix(in srgb, #0a66c2 25%, var(--border))}
+  .chip.linkedin:hover{box-shadow:0 10px 24px rgba(10,102,194,.12), var(--shadow-1)}
+
+  /* ===== Visuel “vert mystérieux” (Kliner) ===== */
+  .mystic-green{
+    height:260px; border-radius:14px; position:relative; overflow:hidden; border:1px solid var(--border);
+    background:
+      radial-gradient(180px 140px at 20% 30%, rgba(12, 111, 79, .45), rgba(12,111,79,0) 70%),
+      radial-gradient(220px 180px at 70% 40%, rgba(38, 172, 119, .35), rgba(38,172,119,0) 70%),
+      radial-gradient(240px 200px at 50% 80%, rgba(9, 90, 62, .30), rgba(9,90,62,0) 70%),
+      linear-gradient(180deg, #0e3b2b 0%, #0f2e24 60%, #0b241d 100%);
+    filter:saturate(120%);
+  }
+  .mystic-green::after{
+    content:""; position:absolute; inset:-25%;
+    background:
+      radial-gradient(180px 140px at var(--gx1,18%) var(--gy1,22%), rgba(50, 210, 140, .18), transparent 60%),
+      radial-gradient(260px 180px at var(--gx2,78%) var(--gy2,36%), rgba(0, 255, 170, .12), transparent 60%);
+    filter:blur(22px) saturate(120%); mix-blend-mode:screen; animation:mist 16s ease-in-out infinite alternate;
+  }
+  @keyframes mist{
+    0%{ --gx1:18%; --gy1:22%; --gx2:78%; --gy2:36%; }
+    100%{ --gx1:28%; --gy1:28%; --gx2:70%; --gy2:46%; }
+  }
+
+  footer{border-top:1px solid var(--border);padding:18px 0 36px;color:var(--muted);text-align:center}
+
+  @media print{
+    header,.welcome,.stage,.deck-rail,.deck-controls,footer{display:none !important}
+    .deck{border:0;box-shadow:none}
+    .slide:not([data-id="cv"]){display:none !important}
+    body{background:#fff;color:#000}
+  }
+  @media (max-width:720px){.slide{padding:16px}}
+  </style>
+</head>
+
+<body>
+<canvas id="fluidbg" class="bg-pro" aria-hidden="true"></canvas>
+<a class="skip-link" href="#contenu">Aller au contenu</a>
+
+<header>
+  <div class="container hero-bar">
+    <div class="avatar" aria-hidden="true"><span aria-hidden="true">UA</span></div>
+    <div class="title">
+      <h1>Ulrich Arekiom</h1>
+      <p>Étudiant en Sciences pour l'Ingénieur — candidature de stage</p>
+    </div>
+    <div class="actions">
+      <a class="btn" href="#contact" data-goto="contact">Contact</a>
+      <button class="btn primary" id="printBtn" type="button" aria-label="Imprimer le CV">Imprimer le CV</button>
+    </div>
+  </div>
+</header>
+
+<section class="welcome" aria-labelledby="welcome-title">
+  <div class="container welcome-inner">
+    <div class="welcome-card">
+      <h2 id="welcome-title">Bienvenue sur mon portfolio</h2>
+      <p>Découvrez mon parcours, mes projets d'étude et mes réalisations personnelles. Cliquez sur <strong>Entrer</strong> pour ouvrir une section.</p>
+      <span class="scroll-cue" aria-hidden="true">Faire défiler ↓</span>
+    </div>
+  </div>
+</section>
+
+<section class="stage" aria-label="Accès rapide aux sections">
+  <div class="container">
+    <div class="tiles" id="tiles">
+      <article class="tile" data-target="cv">
+        <div class="cover" role="img" aria-label="Aperçu section CV"></div>
+        <h3>Mon CV</h3>
+        <p>Compétences, formation, expériences et coordonnées.</p>
+        <a href="#app" class="enter" data-goto="cv">Entrer</a>
+      </article>
+      <article class="tile" data-target="etudes">
+        <div class="cover" role="img" aria-label="Aperçu projets d'étude"></div>
+        <h3>Projets d'étude</h3>
+        <p>Travaux académiques et projets réalisés en L1 et L2.</p>
+        <a href="#app" class="enter" data-goto="etudes">Entrer</a>
+      </article>
+      <article class="tile" data-target="perso">
+        <div class="cover" role="img" aria-label="Aperçu projets personnels"></div>
+        <h3>Projets personnels</h3>
+        <p>Créations audiovisuelles, sons et expériences créatives.</p>
+        <a href="#app" class="enter" data-goto="perso">Entrer</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Application (slide deck) ===== -->
+<section id="app" class="app" hidden>
+  <main id="contenu" class="container" aria-live="polite">
+    <div class="deck-wrap" aria-label="Sections du portfolio">
+      <!-- RAIL -->
+      <div class="deck-rail" role="tablist" aria-label="Navigation des sections">
+        <div class="rail-track">
+          <div class="rail-indicator" aria-hidden="true"></div>
+          <div class="rail-labels">
+            <button type="button" class="rail-btn" data-to="cv" role="tab" aria-selected="true" aria-current="true">CV</button>
+            <button type="button" class="rail-btn" data-to="etudes" role="tab" aria-selected="false">Projets d'étude</button>
+            <button type="button" class="rail-btn" data-to="perso" role="tab" aria-selected="false">Projets personnels</button>
+            <button type="button" class="rail-btn" data-to="contact" role="tab" aria-selected="false">Contact</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- DECK -->
+      <div class="deck" aria-live="polite">
+        <div class="slides" id="slides">
+          <!-- CV -->
+          <section class="slide" data-id="cv" aria-labelledby="s-cv">
+            <article class="card">
+              <h3 id="s-cv">Mon CV (PDF)</h3>
+              <p>
+                <a href="assets/CV professionnel gris simple.pdf" target="_blank" rel="noopener noreferrer">Ouvrir dans un nouvel onglet</a>
+                — <a href="assets/CV professionnel gris simple.pdf" download>Télécharger le CV</a>
+              </p>
+              <div class="media">
+                <iframe title="Visionneuse du CV PDF" src="assets/CV professionnel gris simple.pdf" loading="lazy"></iframe>
+              </div>
+            </article>
+          </section>
+
+          <!-- Études -->
+          <section class="slide" data-id="etudes" aria-labelledby="s-etudes">
+            <div class="grid">
+              <article class="card">
+                <header style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+                  <h3 id="s-etudes">PROJET SEED MÉTÉOROLOGIQUE 2023-2024</h3>
+                  <span class="badge">L1 · Systèmes embarqués</span>
+                </header>
+                <p class="meta">Capteurs, acquisition et analyse de données météo</p>
+                <p>Conception d’un système embarqué de mesure météorologique : température, humidité et pression. Programmation sur microcontrôleur, analyse des données et rapport complet.</p>
+                <p><a href="rapport-projet/Rapport-projet-groupe3-L1SPI-2023-2024.pdf" target="_blank" rel="noopener noreferrer">Voir le rapport (PDF — L1)</a></p>
+              </article>
+
+              <article class="card">
+                <header style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+                  <h3>PROJET ÉOLIENNE 2024-2025</h3>
+                  <span class="badge">L2 · Mécanique & Énergie</span>
+                </header>
+                <p class="meta">Conception 3D, choix des matériaux, plateforme de test</p>
+                <p>Étude et conception d’une éolienne miniature : modélisation 3D, engrenages, choix des matériaux et optimisation du rendement énergétique.</p>
+                <p><a href="rapport-projet/Rapport-projet-groupe3-L2SPI-2024-2025.pdf" target="_blank" rel="noopener noreferrer">Voir le rapport (PDF — L2)</a></p>
+              </article>
+            </div>
+          </section>
+
+          <!-- Perso -->
+          <section class="slide" data-id="perso" aria-labelledby="s-perso">
+            <div class="grid">
+              <!-- MEDEF Réunion -->
+              <article class="card">
+                <header style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+                  <h3 id="s-perso">Court-métrage — MEDEF Réunion</h3>
+                  <span class="badge">Primé</span>
+                </header>
+                <p class="meta">Réalisation, cadrage, montage</p>
+                <p>Projet vidéo réalisé pour/avec le MEDEF Réunion. <em>(préciser l’intitulé exact du prix remporté)</em></p>
+                <div class="media" style="aspect-ratio:16/9">
+                  <iframe
+                    title="MEDEF Réunion — court-métrage"
+                    src="https://www.youtube.com/embed/9tpOHuM7n-c?start=1"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                    loading="lazy"></iframe>
+                </div>
+                <p><a href="https://www.youtube.com/watch?v=9tpOHuM7n-c&t=1s" target="_blank" rel="noopener">Voir sur YouTube</a></p>
+              </article>
+
+              <!-- Kliner (mystic green) -->
+              <article class="card">
+                <header style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+                  <h3>Kliner</h3>
+                  <span class="badge">En cours de développement</span>
+                </header>
+                <p class="meta">Prototype</p>
+                <div class="mystic-green" aria-hidden="true"></div>
+                <p style="margin-top:10px">Un projet en gestation, en cours de développement Plus d’infos bientôt.</p>
+              </article>
+            </div>
+          </section>
+
+          <!-- Contact -->
+          <section class="slide" data-id="contact" aria-labelledby="s-contact">
+            <div class="contact-card">
+              <h3 id="s-contact">Me contacter</h3>
+              <p class="contact-lead">Pour un stage ou une collaboration, écrivez-moi :</p>
+              <div class="contact-actions">
+                <a class="chip mail" href="mailto:ulrich.arekiom0511@gmail.com" aria-label="Envoyer un email">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M4 6h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M20 7 12.6 12.2a1 1 0 0 1-1.2 0L4 7" stroke="currentColor" stroke-width="1.5"/>
+                  </svg>
+                  <span>ulrich.arekiom0511@gmail.com</span>
+                </a>
+
+                <a class="chip linkedin" href="https://www.linkedin.com/in/ulrich-arekiom-143476302/" target="_blank" rel="noopener noreferrer" aria-label="Voir mon profil LinkedIn">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5ZM.5 8h4V24h-4V8Zm7.5 0h3.84v2.18h.06c.54-1.02 1.86-2.18 3.83-2.18 4.1 0 4.86 2.7 4.86 6.22V24h-4v-7.45c0-1.78-.03-4.07-2.48-4.07-2.49 0-2.87 1.94-2.87 3.95V24h-4V8Z" fill="#0a66c2"/>
+                  </svg>
+                  LinkedIn
+                </a>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <div class="deck-controls">
+        <button class="btn" id="prevBtn" type="button">← Précédent</button>
+        <button class="btn" id="nextBtn" type="button">Suivant →</button>
+      </div>
+    </div>
+  </main>
+</section>
+
+<footer class="container">
+  <p>© <span id="year"></span> — Portfolio de stage. Dernière mise à jour : <time id="lastUpdate"></time></p>
+</footer>
+
+<script>
+/* helpers */
+const $=(s,c=document)=>c.querySelector(s);
+const $$=(s,c=document)=>Array.from(c.querySelectorAll(s));
+
+/* reveal tiles */
+const tiles=$$('.tile');
+if('IntersectionObserver'in window){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target);}}),{threshold:.2});
+  tiles.forEach(t=>io.observe(t));
+}else tiles.forEach(t=>t.classList.add('is-in'));
+
+/* slide deck */
+const app=$('#app');
+const slidesEl=$('#slides');
+const railBtns=$$('.rail-btn');
+const ids=railBtns.map(b=>b.dataset.to);
+document.documentElement.style.setProperty('--count', ids.length);
+let idx=0;
+
+function ensureApp(){ if(app.hasAttribute('hidden')) app.removeAttribute('hidden'); }
+function updateUI(pushHash=true){
+  slidesEl.style.transform=`translateX(${idx*-100}%)`;
+  document.documentElement.style.setProperty('--i', idx);
+  railBtns.forEach((b,i)=>{b.setAttribute('aria-selected',String(i===idx));b.toggleAttribute('aria-current',i===idx);});
+  $('#prevBtn').disabled=idx===0; $('#nextBtn').disabled=idx===ids.length-1;
+  if(pushHash) history.replaceState(null,'','#'+ids[idx]);
+}
+function goTo(id){ const i=ids.indexOf(id); if(i<0) return; idx=i; updateUI(); document.getElementById('contenu').scrollIntoView({behavior:'smooth', block:'start'}); }
+
+/* clicks rail */
+railBtns.forEach(b=> b.addEventListener('click', ()=>{ ensureApp(); goTo(b.dataset.to); }));
+
+/* controls */
+$('#prevBtn').addEventListener('click', ()=>{ if(idx>0){ idx--; updateUI(); } });
+$('#nextBtn').addEventListener('click', ()=>{ if(idx<ids.length-1){ idx++; updateUI(); } });
+
+/* swipe / drag — NE PAS DRAG si la cible est un lien/bouton */
+(function(){
+  let startX=0, curX=0, dragging=false, pid=null, allowDrag=true;
+  const th=60;
+
+  slidesEl.addEventListener('pointerdown', (e)=>{
+    if (e.target.closest('a,button,input,textarea,select,label')) { allowDrag=false; return; }
+    allowDrag=true;
+    dragging=true; startX=e.clientX; curX=e.clientX; pid=e.pointerId;
+    slidesEl.setPointerCapture(pid); slidesEl.style.transition='none';
+  });
+
+  slidesEl.addEventListener('pointermove', (e)=>{
+    if(!dragging || !allowDrag || e.pointerId!==pid) return;
+    curX=e.clientX; const dx=curX-startX;
+    slidesEl.style.transform=`translateX(calc(${idx*-100}% + ${dx}px))`;
+  });
+
+  function end(){
+    if(!dragging){ allowDrag=true; return; }
+    dragging=false; slidesEl.style.transition='';
+    if(!allowDrag){ allowDrag=true; updateUI(false); return; }
+    const dx=curX-startX;
+    if (dx<-th && idx<ids.length-1) idx++;
+    if (dx> th && idx>0) idx--;
+    updateUI();
+  }
+  ['pointerup','pointercancel','pointerleave'].forEach(ev=>slidesEl.addEventListener(ev,end));
+})();
+
+/* anchors "Entrer" */
+$$('[data-goto]').forEach(a=>{
+  a.addEventListener('click', e=>{
+    const id=a.getAttribute('data-goto'); if(!id) return;
+    e.preventDefault(); ensureApp(); goTo(id);
+  });
+});
+
+/* deep-link */
+(function initFromHash(){
+  const id=decodeURIComponent(location.hash.replace('#',''));
+  if(id && ids.includes(id)){ ensureApp(); goTo(id); }
+  else updateUI(false);
+})();
+
+/* === Impression : imprimer directement le PDF === */
+(function () {
+  const pdfURL = 'assets/CV professionnel gris simple.pdf'; // chemin du PDF
+
+  function printPDF(url) {
+    const iframe = document.createElement('iframe');
+    iframe.style.position = 'fixed';
+    iframe.style.right = '0';
+    iframe.style.bottom = '0';
+    iframe.style.width = '0';
+    iframe.style.height = '0';
+    iframe.style.border = '0';
+    iframe.src = url;
+
+    iframe.onload = () => {
+      try {
+        iframe.contentWindow.focus();
+        iframe.contentWindow.print();
+      } catch (err) {
+        window.open(url, '_blank', 'noopener');
+      }
+      setTimeout(() => iframe.remove(), 1500);
+    };
+
+    document.body.appendChild(iframe);
+  }
+
+  const printBtn = document.getElementById('printBtn');
+  if (printBtn) {
+    printBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      printPDF(pdfURL);
+    });
+  }
+})();
+
+/* footer dates */
+$('#year').textContent=new Date().getFullYear();
+const lu=new Date(document.lastModified);
+$('#lastUpdate').textContent=lu.toLocaleDateString('fr-FR',{year:'numeric',month:'long',day:'numeric'});
+</script>
+
+<script>
+/* ==== Canvas WebGL fluide (indépendant) ==== */
+(function(){
+  const canvas=document.getElementById('fluidbg');
+  const gl=canvas.getContext('webgl',{antialias:false,alpha:true,depth:false,stencil:false,premultipliedAlpha:true});
+  if(!gl){canvas.style.display='none';return;}
+  const dpr=Math.min(window.devicePixelRatio||1,2);
+  function resize(){const w=innerWidth,h=innerHeight;canvas.width=(w*dpr)|0;canvas.height=(h*dpr)|0;canvas.style.width=w+'px';canvas.style.height=h+'px';gl.viewport(0,0,canvas.width,canvas.height);} addEventListener('resize',resize,{passive:true}); resize();
+  const vert=`attribute vec2 a;void main(){ gl_Position=vec4(a,0.,1.); }`;
+  const frag=`precision highp float;uniform vec2 u_res;uniform float u_time;
+  vec3 palette(float t){vec3 a=vec3(0.98,0.96,0.94),b=vec3(0.64,0.41,0.25),c=vec3(0.89,0.78,0.66),d=vec3(0.15,0.10,0.07);
+    return a + b * sin(6.28318*(t + 0.05)) * 0.20 + c*(t*0.35) - d*(t*t*0.18);}
+  float hash(vec2 p){p=fract(p*vec2(123.34,456.21));p+=dot(p,p+45.32);return fract(p.x*p.y);}
+  float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);float A=hash(i),B=hash(i+vec2(1.,0.)),C=hash(i+vec2(0.,1.)),D=hash(i+vec2(1.,1.));
+    return mix(mix(A,B,f.x),mix(C,D,f.x),f.y);}
+  float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*noise(p);p*=2.;a*=.5;}return v;}
+  void main(){
+    vec2 p=(gl_FragCoord.xy-.5*u_res.xy)/u_res.y;float t=u_time*.06;
+    vec2 q=vec2(fbm(p*1.2+vec2(0., t)), fbm(p*1.2+vec2(5.2,-t)));
+    vec2 r=vec2(fbm(p*2.+1.5*q+vec2(1.7,9.2)+vec2(0., t*.8)),
+                fbm(p*2.+1.5*q+vec2(8.3,2.8)+vec2(0.,-t*.8)));
+    float f=fbm(p*3.+2.*r);
+    float wave=.08*sin(6.28318*(p.x*.25+t*.15))+.08*sin(6.28318*(p.y*.25-t*.12));
+    float m=clamp(f*.85+wave,0.,1.);
+    vec3 col=palette(m);
+    float vign=smoothstep(1.4,0.1,length(p));
+    col=mix(col*.98,col*1.06,vign);
+    gl_FragColor=vec4(col,.9);
+  }`;
+
+  function sh(t,s){const o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);if(!gl.getShaderParameter(o,gl.COMPILE_STATUS)){console.error(gl.getShaderInfoLog(o));return null;}return o;}
+  const vs=sh(gl.VERTEX_SHADER,vert), fs=sh(gl.FRAGMENT_SHADER,frag);
+  const prog=gl.createProgram();gl.attachShader(prog,vs);gl.attachShader(prog,fs);gl.linkProgram(prog);
+  if(!gl.getProgramParameter(prog,gl.LINK_STATUS)){canvas.style.display='none';return;}
+  gl.useProgram(prog);
+  const buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,-1,1,1,-1,1]),gl.STATIC_DRAW);
+  const loc=gl.getAttribLocation(prog,'a');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+  const uR=gl.getUniformLocation(prog,'u_res'),uT=gl.getUniformLocation(prog,'u_time');
+  let start=performance.now(), raf=0;
+  function frame(){const t=(performance.now()-start)/1000; gl.uniform2f(uR,canvas.width,canvas.height); gl.uniform1f(uT,t); gl.drawArrays(gl.TRIANGLES,0,6); raf=requestAnimationFrame(frame);}
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)');
+  function start(){ if(!reduce.matches){ cancelAnimationFrame(raf); frame(); } }
+  function stop(){ cancelAnimationFrame(raf); }
+  reduce.addEventListener && reduce.addEventListener('change', ()=> reduce.matches ? stop() : start());
+  document.addEventListener('visibilitychange', ()=> document.hidden ? stop() : start());
+  start();
+})();
+</script>
+</body>
+</html>
