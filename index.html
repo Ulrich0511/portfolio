@@ -8,24 +8,6 @@
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#fbfaf8">
   <link rel="canonical" href="https://exemple.com/portfolio-ulrich" />
-
-  <!-- SEO & Partage -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Portfolio — Ulrich Arekiom">
-  <meta property="og:description" content="CV, projets d'étude et projets personnels.">
-  <meta property="og:url" content="https://exemple.com/portfolio-ulrich">
-  <meta property="og:image" content="https://exemple.com/assets/cover.jpg">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Portfolio — Ulrich Arekiom">
-  <meta name="twitter:description" content="CV, projets d'étude et projets personnels.">
-  <meta name="twitter:image" content="https://exemple.com/assets/cover.jpg">
-
-  <!-- (optionnel) CSP basique si servie en meta; préférer les headers serveur -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' https://www.youtube.com https://www.youtube-nocookie.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com;"> 
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 
   <style>
@@ -53,11 +35,6 @@
   a{color:var(--accent);text-decoration:none}
   :focus-visible{outline:2px solid color-mix(in srgb, var(--accent) 55%, transparent);outline-offset:3px;border-radius:10px}
   .container{max-width:var(--maxw);margin-inline:auto;padding:20px}
-
-  /* Skip link accessible */
-  .skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
-  .skip-link:focus{left:20px;top:12px;width:auto;height:auto;padding:10px 14px;border-radius:12px;background:#fff;border:1px solid var(--border);box-shadow:var(--shadow-1)}
-  .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
   /* ===== header ===== */
   header{position:sticky;top:0;z-index:40;background:color-mix(in srgb, var(--paper) 92%, transparent);backdrop-filter:saturate(112%) blur(10px);border-bottom:1px solid var(--border)}
@@ -156,7 +133,6 @@
 
   footer{border-top:1px solid var(--border);padding:18px 0 36px;color:var(--muted);text-align:center}
 
-  /* Impression */
   @media print{
     header,.welcome,.stage,.deck-rail,.deck-controls,footer{display:none !important}
     .deck{border:0;box-shadow:none}
@@ -164,21 +140,6 @@
     body{background:#fff;color:#000}
   }
   @media (max-width:720px){.slide{padding:16px}}
-
-  /* Mode sombre (préf système) */
-  @media (prefers-color-scheme: dark){
-    :root{
-      --bg:#0d0f12; --paper:#0f1216; --ink:#e5e7eb; --muted:#9aa3ae;
-      --accent:#b07a4e; --accent-2:#5a412f; --border:#1e232a;
-      --shadow-1:0 6px 18px rgba(0,0,0,.35); --shadow-2:0 24px 60px rgba(0,0,0,.55);
-      --inner:inset 0 1px 0 rgba(255,255,255,.02), inset 0 -1px 0 rgba(0,0,0,.4);
-    }
-    header{background:color-mix(in srgb, var(--paper) 92%, transparent);}
-    .btn{background:linear-gradient(180deg, #14181e, #0f1216); color:var(--ink);}
-    .btn.primary{background:linear-gradient(180deg, color-mix(in srgb,var(--accent) 75%, #000 25%), var(--accent));}
-    .deck,.card,.tile,.contact-card{background:var(--paper);}
-    iframe{background:#0f1216;}
-  }
   </style>
 </head>
 
@@ -260,11 +221,11 @@
             <article class="card">
               <h3 id="s-cv">Mon CV (PDF)</h3>
               <p>
-                <a href="assets/CV-professionnel-gris-simple.pdf" target="_blank" rel="noopener noreferrer">Ouvrir dans un nouvel onglet</a>
-                — <a href="assets/CV-professionnel-gris-simple.pdf" download>Télécharger le CV</a>
+                <a href="assets/CV professionnel gris simple.pdf" target="_blank" rel="noopener noreferrer">Ouvrir dans un nouvel onglet</a>
+                — <a href="assets/CV professionnel gris simple.pdf" download>Télécharger le CV</a>
               </p>
               <div class="media">
-                <iframe title="Visionneuse du CV PDF" src="assets/CV-professionnel-gris-simple.pdf" loading="lazy"></iframe>
+                <iframe title="Visionneuse du CV PDF" src="assets/CV professionnel gris simple.pdf" loading="lazy"></iframe>
               </div>
             </article>
           </section>
@@ -324,7 +285,7 @@
                 </header>
                 <p class="meta">Prototype</p>
                 <div class="mystic-green" aria-hidden="true"></div>
-                <p style="margin-top:10px">Un projet en gestation, en cours de développement. Plus d’infos bientôt.</p>
+                <p style="margin-top:10px">Un projet en gestation, en cours de développement Plus d’infos bientôt.</p>
               </article>
             </div>
           </section>
@@ -356,8 +317,8 @@
       </div>
 
       <div class="deck-controls">
-        <button class="btn" id="prevBtn" type="button" aria-label="Aller à la section précédente">← Précédent</button>
-        <button class="btn" id="nextBtn" type="button" aria-label="Aller à la section suivante">Suivant →</button>
+        <button class="btn" id="prevBtn" type="button">← Précédent</button>
+        <button class="btn" id="nextBtn" type="button">Suivant →</button>
       </div>
     </div>
   </main>
@@ -387,17 +348,6 @@ const ids=railBtns.map(b=>b.dataset.to);
 document.documentElement.style.setProperty('--count', ids.length);
 let idx=0;
 
-// Associer tabs ↔ panels (a11y)
-const panels=$$('.slide');
-railBtns.forEach((b,i)=>{
-  const tabId=`tab-${ids[i]}`; const panelId=`panel-${ids[i]}`;
-  b.id=tabId; const panel=panels[i]; panel.id=panelId;
-  b.setAttribute('aria-controls',panelId);
-  panel.setAttribute('role','tabpanel');
-  panel.setAttribute('aria-labelledby',tabId);
-  panel.hidden=i!==0;
-});
-
 function ensureApp(){ if(app.hasAttribute('hidden')) app.removeAttribute('hidden'); }
 function updateUI(pushHash=true){
   slidesEl.style.transform=`translateX(${idx*-100}%)`;
@@ -405,26 +355,11 @@ function updateUI(pushHash=true){
   railBtns.forEach((b,i)=>{b.setAttribute('aria-selected',String(i===idx));b.toggleAttribute('aria-current',i===idx);});
   $('#prevBtn').disabled=idx===0; $('#nextBtn').disabled=idx===ids.length-1;
   if(pushHash) history.replaceState(null,'','#'+ids[idx]);
-  updatePanels();
-}
-function updatePanels(){
-  panels.forEach((p,i)=>{ p.hidden = i !== idx; });
-  const h = panels[idx].querySelector('h3, h2, h1, [tabindex="-1"]') || panels[idx];
-  if (h) { h.setAttribute('tabindex','-1'); h.focus(); }
 }
 function goTo(id){ const i=ids.indexOf(id); if(i<0) return; idx=i; updateUI(); document.getElementById('contenu').scrollIntoView({behavior:'smooth', block:'start'}); }
 
 /* clicks rail */
 railBtns.forEach(b=> b.addEventListener('click', ()=>{ ensureApp(); goTo(b.dataset.to); }));
-
-/* clavier tablist */
-$('.deck-rail .rail-labels').addEventListener('keydown', (e)=>{
-  const k=e.key; if(!['ArrowLeft','ArrowRight','Home','End'].includes(k)) return; e.preventDefault();
-  let n=idx; if(k==='ArrowRight') n=Math.min(idx+1, ids.length-1);
-  if(k==='ArrowLeft') n=Math.max(idx-1,0);
-  if(k==='Home') n=0; if(k==='End') n=ids.length-1;
-  ensureApp(); goTo(ids[n]); railBtns[n].focus();
-});
 
 /* controls */
 $('#prevBtn').addEventListener('click', ()=>{ if(idx>0){ idx--; updateUI(); } });
@@ -477,14 +412,7 @@ $$('[data-goto]').forEach(a=>{
 
 /* === Impression : imprimer directement le PDF === */
 (function () {
-  const pdfURL = 'assets/CV-professionnel-gris-simple.pdf'; // chemin du PDF renommé
-
-  // zone d'état a11y
-  const status = document.createElement('div');
-  status.setAttribute('aria-live','polite');
-  status.className = 'sr-only';
-  status.textContent = '';
-  document.body.appendChild(status);
+  const pdfURL = 'assets/CV professionnel gris simple.pdf'; // chemin du PDF
 
   function printPDF(url) {
     const iframe = document.createElement('iframe');
@@ -497,14 +425,13 @@ $$('[data-goto]').forEach(a=>{
     iframe.src = url;
 
     iframe.onload = () => {
-      status.textContent = 'Impression du CV en cours…';
       try {
         iframe.contentWindow.focus();
         iframe.contentWindow.print();
       } catch (err) {
         window.open(url, '_blank', 'noopener');
       }
-      setTimeout(() => { iframe.remove(); status.textContent = ''; }, 1500);
+      setTimeout(() => iframe.remove(), 1500);
     };
 
     document.body.appendChild(iframe);
@@ -536,11 +463,11 @@ $('#lastUpdate').textContent=lu.toLocaleDateString('fr-FR',{year:'numeric',month
   const vert=`attribute vec2 a;void main(){ gl_Position=vec4(a,0.,1.); }`;
   const frag=`precision highp float;uniform vec2 u_res;uniform float u_time;
   vec3 palette(float t){vec3 a=vec3(0.98,0.96,0.94),b=vec3(0.64,0.41,0.25),c=vec3(0.89,0.78,0.66),d=vec3(0.15,0.10,0.07);
-    return a + b * sin(6.28318*(t + 0.05)) * 0.20 + c*(t*0.35) - d*(t*t*0.18);} 
-  float hash(vec2 p){p=fract(p*vec2(123.34,456.21));p+=dot(p,p+45.32);return fract(p.x*p.y);} 
+    return a + b * sin(6.28318*(t + 0.05)) * 0.20 + c*(t*0.35) - d*(t*t*0.18);}
+  float hash(vec2 p){p=fract(p*vec2(123.34,456.21));p+=dot(p,p+45.32);return fract(p.x*p.y);}
   float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);float A=hash(i),B=hash(i+vec2(1.,0.)),C=hash(i+vec2(0.,1.)),D=hash(i+vec2(1.,1.));
-    return mix(mix(A,B,f.x),mix(C,D,f.x),f.y);} 
-  float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*noise(p);p*=2.;a*=.5;}return v;} 
+    return mix(mix(A,B,f.x),mix(C,D,f.x),f.y);}
+  float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*noise(p);p*=2.;a*=.5;}return v;}
   void main(){
     vec2 p=(gl_FragCoord.xy-.5*u_res.xy)/u_res.y;float t=u_time*.06;
     vec2 q=vec2(fbm(p*1.2+vec2(0., t)), fbm(p*1.2+vec2(5.2,-t)));
@@ -565,7 +492,7 @@ $('#lastUpdate').textContent=lu.toLocaleDateString('fr-FR',{year:'numeric',month
   const loc=gl.getAttribLocation(prog,'a');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
   const uR=gl.getUniformLocation(prog,'u_res'),uT=gl.getUniformLocation(prog,'u_time');
   let start=performance.now(), raf=0;
-  function frame(){const t=(performance.now()-start)/1000; gl.uniform2f(uR,canvas.width,canvas.height); gl.uniform1f(uT,t); gl.drawArrays(gl.TRIANGLES,0,6); raf=requestAnimationFrame(frame);} 
+  function frame(){const t=(performance.now()-start)/1000; gl.uniform2f(uR,canvas.width,canvas.height); gl.uniform1f(uT,t); gl.drawArrays(gl.TRIANGLES,0,6); raf=requestAnimationFrame(frame);}
   const reduce=matchMedia('(prefers-reduced-motion: reduce)');
   function start(){ if(!reduce.matches){ cancelAnimationFrame(raf); frame(); } }
   function stop(){ cancelAnimationFrame(raf); }
@@ -573,19 +500,6 @@ $('#lastUpdate').textContent=lu.toLocaleDateString('fr-FR',{year:'numeric',month
   document.addEventListener('visibilitychange', ()=> document.hidden ? stop() : start());
   start();
 })();
-</script>
-
-<!-- JSON-LD Person -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Ulrich Arekiom",
-  "jobTitle": "Étudiant en Sciences pour l'Ingénieur",
-  "email": "mailto:ulrich.arekiom0511@gmail.com",
-  "url": "https://exemple.com/portfolio-ulrich",
-  "sameAs": ["https://www.linkedin.com/in/ulrich-arekiom-143476302/"]
-}
 </script>
 </body>
 </html>
